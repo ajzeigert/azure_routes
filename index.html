@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Leaflet Map Boilerplate</title>
+    <meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+		<link rel="stylesheet" href="leaflet-control-geocoder-master/Control.Geocoder.css" />
+		<link rel="stylesheet" href="leaflet-routing-machine-2/leaflet-routing-machine.css" />
+    <style type="text/css">
+				body {
+					margin: 0;
+					padding: 0;
+					height: 100%;
+					width: 100%;
+				}
+					
+        #map {
+            height: 600px;
+						width: 100%;
+        }
+    </style>
+		
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+		<script src="leaflet-control-geocoder-master/Control.Geocoder.js"></script>
+		<script src="leaflet-routing-machine-2/leaflet-routing-machine.js"></script>
+
+    <script type="text/javascript">
+    	window.onresize = function(){
+    		var map = document.querySelector('#map');
+    		// map.style.width = window.innerWidth - 50+'px';
+    		// map.style.height = window.innerHeight - 50+'px';
+    	}
+        window.onload = function() {
+            window.onresize();
+            var map = L.map('map').setView([44.1, -121.2], 10);
+            // http://c.tile.openstreetmap.org/5/27/20.png
+            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org">OSM</a> contributors',
+                maxZoom: 18
+            }).addTo(map);
+					
+						L.Routing.control({
+							waypoints: [
+
+						],
+							routeWhileDragging: true,
+    					geocoder: L.Control.Geocoder.nominatim()
+						}).addTo(map);
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="map"></div>
+</body>
+
+</html>
